@@ -1,0 +1,40 @@
+---
+title: "The Sparks-Foundation - Task 1 : Prediction using supervised ML"
+output: rmarkdown::github_document
+---
+Author : Sohom Das
+
+The objective of this task is to predict the percentage of marks of an student based on the number of study hours. This is a simple linear regression task as it involves just two variables.
+
+```{r}
+data_frame <- read.csv(url("http://bit.ly/w-data"))
+```
+
+Attach data_frame and plot
+
+```{r}
+attach(data_frame)
+plot(Hours,Scores, main='Hours vs Percentage',xlab='Hours Studied',ylab='Percentage Score',cex=2,pch=20)
+```
+
+Find correlation between predictor and response variables
+
+```{r}
+cor(Hours,Scores)
+```
+We see high correlation
+
+Now we will fit a linear model
+
+```{r}
+lmo <- lm(Scores~Hours, data=data_frame)
+summary(lmo)
+```
+
+Prediction
+
+```{r}
+predict(lmo, data.frame(Hours = 9.25))
+```
+
+Therfore, the predicted score if a student studies for 9.25 hrs/day is about 92.90.
